@@ -66,7 +66,7 @@ def receive_frames():
     frames = request.json
 
     for frame in frames:
-        existing_frames = db.session.query(Frame).filter_by(id=frame['id']).count()
+        existing_frames = db.session.query(Frame).filter_by(id=frame['id'])
 
         for existing_frame in existing_frames:
             db.session.remove(existing_frame)
