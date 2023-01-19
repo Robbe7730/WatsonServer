@@ -67,10 +67,8 @@ def receive_frames():
 
     for frame in frames:
         existing_frames = db.session.query(Frame).filter_by(id=frame['id'])
-
-        for existing_frame in existing_frames:
-            db.session.remove(existing_frame)
-            db.session.commit()
+        existing_frames.delete()
+        db.session.commit()
 
         f = Frame.from_dict(frame)
         db.session.add(f)
